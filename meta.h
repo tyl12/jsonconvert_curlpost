@@ -23,6 +23,51 @@ typedef struct Meta{
     int CustomerID; //-1 for invalid ID
 }Meta_t;
 
+
+#include <cstdlib>
+#include <ctime>
+#include <random>
+#include <chrono>
+static int randNum(int min, int max)
+{
+    srand(time(0));
+    return rand() % max + min;
+}
+static double randomDouble()
+{
+    const double lower_bound = 0;
+    const double upper_bound = 1;
+    std::uniform_real_distribution<double> unif(lower_bound, upper_bound);
+
+    std::random_device rand_dev;          // Use random_device to get a random seed.
+
+    std::mt19937 rand_engine(rand_dev()); // mt19937 is a good pseudo-random number generator.
+    double x = unif(rand_engine);
+    return x;
+}
+static int generate_fake_meta_for_debug(Meta_t& meta)
+{
+    int d = randNum(0,100);
+    meta.StoreID    = string("StoreID") + std::to_string(d);
+    meta.Mac        = "1234:1234:1234:ffff";
+    meta.UniqueID   = std::to_string(d);
+    meta.Type       = 0;
+    meta.Gender     = 0;
+    meta.Age        = 2;
+    for (int i=0;i<4;i++)
+        meta.ROI[i] = i;
+    //meta.TimeStamp =  std::chrono::duration_cast<  std::chrono::milliseconds >( std::chrono::system_clock::now().time_since_epoch());
+    std::chrono::milliseconds ms = std::chrono::duration_cast<  std::chrono::milliseconds >( std::chrono::system_clock::now().time_since_epoch());
+    meta.TimeStamp = ms.count();
+
+    meta.CustomerID = -1;
+
+    for (int i=0;i<128;i++)
+        meta.Feature[i]=randomDouble();
+
+    return 0;
+}
+
 #if 0
 {
     "StoreID":"idsample",

@@ -5,10 +5,12 @@
 
 using namespace std;
 
+
+
 int main()
 {
-
     Meta_t meta;
+
     string json = convertMeta2Json_rj(meta);
     string output;
     int ret = postJson2Server(json, output);

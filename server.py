@@ -87,15 +87,16 @@ class myHandler(BaseHTTPRequestHandler):
                 print data
                 print "-----2"
 
-                f = open("./a.jpg", 'rb')
+                #f = open("./a.jpg", 'rb')
                 self.send_response(200)
                 mimetype='image/jpg'
                 mimetype='application/json'
                 self.send_header('Content-type',mimetype)
                 self.end_headers()
                 #self.wfile.write(f.read())
-                self.wfile.write("{\"test\":\"adfasd\", \"ws\":\"dfw\"}")
-                f.close()
+                #self.wfile.write("{\"test\":\"adfasd\", \"ws\":\"dfw\"}")
+                self.wfile.write(test)
+                #f.close()
 
                 '''
 		self.send_response(200)

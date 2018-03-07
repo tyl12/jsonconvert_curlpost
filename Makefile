@@ -28,4 +28,4 @@
 #all: $(EXE)
 
 all:
-	g++ jsonAPI.cpp curlPost.cpp test.cpp -o test -lcurl
+	g++ -std=c++11 jsonAPI.cpp curlPost.cpp test.cpp -o test -lcurl
